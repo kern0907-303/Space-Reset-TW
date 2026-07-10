@@ -3,3 +3,4 @@ Thumbs.db
 .playwright-cli/
 verification/
 automation/
+.wrangler/
