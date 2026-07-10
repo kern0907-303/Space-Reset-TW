@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Space Reset｜居家・店面空間檢測</title>
+    <meta
+      name="description"
+      content="Space Reset 從照片、平面圖與空間狀況開始，協助你看見居家或店面裡讓人疲累、混亂、卡住或不順的地方，並提供 90 天可追蹤的空間支持。"
+    />
+    <link rel="icon" href="data:," />
+    <link rel="preload" as="image" href="./assets/hero-living-room.jpg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="回到首頁">
+        <span class="brand-mark">SR</span>
+        <span>
+          <strong>Space Reset</strong>
+          <small>居家・店面空間檢測</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="主要導覽">
+        <a href="#symptoms">空間痛點</a>
+        <a href="#quiz">60 秒自測</a>
+        <a href="#process">檢視方式</a>
+        <a href="#deliverables">交付內容</a>
+        <a href="#upload" class="nav-cta">申請檢視</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-bg" role="img" aria-label="明亮安定的居家空間"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">I8 初八信息顧問｜Space Reset 空間檢測</p>
+          <h1 id="hero-title">家裡悶悶的、店裡總是不順，可能不是你想太多。</h1>
+          <p class="hero-lede">
+            有些空間看起來不亂，卻讓人一回去就累；有些店面裝潢不差，客人卻停不下來。Space Reset 先幫你把這種「說不上來的不對勁」看成可以整理、可以追蹤的線索。
+          </p>
+          <div class="hero-actions" aria-label="主要行動">
+            <a class="button primary" href="#quiz">60 秒測你的空間狀態</a>
+            <a class="button ghost" href="#process">看我們怎麼檢視</a>
+          </div>
+          <p class="hero-note">不用留資料、不用先選方案。先測一次，看懂自己空間的狀態，再決定下一步。</p>
+        </div>
+      </section>
+
+      <section class="section compact" id="symptoms">
+        <div class="section-heading">
+          <p class="eyebrow">先確認你是不是有感</p>
+          <h2>人每天洗澡，是為了把一天的疲累洗掉；空間也需要定期重整，才留得住舒適感。</h2>
+          <p class="desktop-nowrap section-line">
+            有些空間不一定髒亂，卻會讓人覺得悶、累、卡、不想久待。第一步不是急著改擺設，而是先把「怪怪的感覺」變成可以觀察、可以整理的狀況。
+          </p>
+        </div>
+
+        <div class="symptom-grid">
+          <article class="symptom-card">
+            <span>居家</span>
+            <h3>回到家沒有放鬆，反而更累</h3>
+            <p>空間看起來正常，但人容易覺得悶、煩躁、睡不安，或家人之間更容易有摩擦。</p>
+          </article>
+          <article class="symptom-card">
+            <span>店面</span>
+            <h3>有人進店，卻很快離開</h3>
+            <p>產品、服務都不差，現場卻常出現客流散、成交卡、員工消耗感重的情況。</p>
+          </article>
+          <article class="symptom-card">
+            <span>共同狀況</span>
+            <h3>你已經調整過，還是說不上哪裡不對</h3>
+            <p>擺設、收納、動線都改過，但整體狀態沒有真正變輕，甚至很快又回到原樣。</p>
+          </article>
+        </div>
+        <div class="section-bridge">
+          <p>如果你看完已經想到家裡或店裡某個位置，先別急著下結論。花 60 秒測一次，看看你的空間現在是什麼狀態。</p>
+          <a class="button secondary" href="#quiz">開始 60 秒空間自測</a>
+        </div>
+      </section>
+
+      <section class="section quiz-section" id="quiz">
+        <div class="section-heading">
+          <p class="eyebrow">60 秒空間自測</p>
+          <h2>你的空間現在是什麼狀態？測一次就知道。</h2>
+          <p>8 個問題，不用留資料、馬上看結果。測完你就知道，這個空間值不值得做一次完整檢測。</p>
+        </div>
+
+        <div class="quiz-panel" data-quiz>
+          <div class="quiz-toggle" role="group" aria-label="選擇自測類型">
+            <button type="button" class="is-active" data-quiz-mode="home">居家</button>
+            <button type="button" data-quiz-mode="business">店面</button>
+            <button type="button" data-quiz-mode="office">辦公室・工作室</button>
+          </div>
+
+          <div class="quiz-body" data-quiz-body>
+            <div class="quiz-progress" aria-hidden="true"><span data-quiz-bar></span></div>
+            <p class="quiz-count" data-quiz-count>第 1 題／共 8 題</p>
+            <h3 class="quiz-question" data-quiz-question></h3>
+            <div class="quiz-options">
+              <button type="button" data-score="2">經常這樣</button>
+              <button type="button" data-score="1">偶爾會</button>
+              <button type="button" data-score="0">幾乎沒有</button>
+            </div>
+            <button type="button" class="quiz-back" data-quiz-back hidden>← 上一題</button>
+          </div>
+
+          <div class="quiz-result" data-quiz-result hidden>
+            <p class="quiz-score" data-quiz-score></p>
+            <h3 data-quiz-title></h3>
+            <p class="quiz-dims" data-quiz-dims></p>
+            <p class="quiz-copy" data-quiz-copy></p>
+            <div class="quiz-result-actions">
+              <a class="button primary" href="#upload" data-upload-trigger>申請空間檢測，把卡點看清楚</a>
+              <button type="button" class="button secondary quiz-copy-btn" data-quiz-copy-btn>複製自測結果</button>
+              <button type="button" class="quiz-restart" data-quiz-restart>重測一次</button>
+            </div>
+            <small>按「複製自測結果」，送出表單時貼在「請用幾句話描述目前狀況」欄位，我們就能接著你的自測結果往下看。自測只是初步線索，正式檢測會根據照片、平面圖與你的描述給出具體卡點與任務。</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contrast" id="reframe">
+        <div class="split">
+          <div>
+            <p class="eyebrow">重新看問題</p>
+            <h2>不是再買一個擺件，也不是再忍一陣子。</h2>
+          </div>
+          <div class="copy-stack">
+            <p>
+              很多空間卡住，不一定是單一原因。它可能同時來自動線、使用習慣、物件堆積、家人或團隊的壓力，以及空間裡長期累積的狀態。
+            </p>
+            <p>
+              所以 Space Reset 不會一開始就叫你買長期方案，也不會用一堆玄學語言要你相信。先把「哪裡讓人卡住」看清楚，才知道該整理哪裡、觀察什麼，以及這個空間值不值得進一步支持。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section visual-band" id="process">
+        <div class="section-heading">
+          <p class="eyebrow">檢視方式</p>
+          <h2 class="desktop-nowrap process-title">先看懂空間，再決定要不要進一步支持。</h2>
+          <p>陌生客最怕的是買了一個看不懂的服務。這裡先用資料檢視建立判斷，再用 90 天支持做前後觀察。</p>
+        </div>
+
+        <div class="flow-diagram" aria-label="Space Reset 四步流程">
+          <article class="flow-step">
+            <div class="flow-icon plan-icon" aria-hidden="true"></div>
+            <b>01</b>
+            <h3>提供資料</h3>
+            <strong>平面圖 + 照片</strong>
+            <small>5 分鐘</small>
+            <p>用手機拍照，補一張平面圖或手繪圖，再寫下你最有感的問題。</p>
+          </article>
+          <article class="flow-step">
+            <div class="flow-icon report-icon" aria-hidden="true"></div>
+            <b>02</b>
+            <h3>收到初步診斷</h3>
+            <strong>卡點報告 + 具體任務</strong>
+            <small>3 個工作天內</small>
+            <p>先指出優先處理位置，把建議變成你看得懂、做得到的整理任務。</p>
+          </article>
+          <article class="flow-step">
+            <div class="flow-icon support-icon" aria-hidden="true"></div>
+            <b>03</b>
+            <h3>開始 90 天支持</h3>
+            <strong>空間狀態持續支持</strong>
+            <small>正式方案</small>
+            <p>你只需要完成實體任務清單；多數是打掃整理，其他支持由我們在後台處理。</p>
+          </article>
+          <article class="flow-step">
+            <div class="flow-icon weekly-icon" aria-hidden="true"></div>
+            <b>04</b>
+            <h3>每月看見變化</h3>
+            <strong>D30 / D60 / D90 對照</strong>
+            <small>每 30 天一次</small>
+            <p>每 30 天會收到摘要與觀察重點，讓你知道過程有沒有在動，而不是買完就放著。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="deliverables">
+        <div class="section-heading">
+          <p class="eyebrow">你會拿到什麼</p>
+          <h2>你買的不是一句「幫你調好了」，而是一段看得見的整理過程。</h2>
+          <p>這是 Space Reset 和一般放置型服務最大的差異：你會知道卡點在哪、先做什麼、每 30 天觀察到什麼，最後前後有什麼對照。</p>
+        </div>
+
+        <div class="timeline-layout">
+          <div class="timeline">
+            <div class="timeline-item">
+              <span>D0</span>
+              <h3>支持主題清單</h3>
+              <p>先列出 90 天要支持與觀察的主題，讓你知道這一季不是一團模糊地「做調整」。</p>
+            </div>
+            <div class="timeline-item">
+              <span>D30 / D60</span>
+              <h3>階段摘要</h3>
+              <p>每 30 天整理一次狀態摘要、實體任務回饋與下一階段觀察重點，讓過程全程看得見。</p>
+            </div>
+            <div class="timeline-item">
+              <span>D90</span>
+              <h3>結案對照報告</h3>
+              <p>把初始狀況、階段摘要與結案觀察放在一起，清楚看到這 90 天發生過什麼。</p>
+            </div>
+          </div>
+          <figure class="summary-shot">
+            <img src="./assets/report-visual.png" alt="Space Reset 交付報告與對照紀錄示意" />
+            <figcaption>交付示意：支持主題、階段摘要與 D90 對照會整理成可閱讀、可追蹤的紀錄。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section contrast" id="paths">
+        <div class="section-heading">
+          <p class="eyebrow">服務入口</p>
+          <h2>同一個 Space Reset，居家和商業空間看的重點不同。</h2>
+        </div>
+        <div class="path-grid">
+          <article class="path-card home">
+            <div class="path-label">居家版</div>
+            <h3>居家空間檢測</h3>
+            <p>
+              適合想整理家中沉重感、睡不安、回家更累、家人容易煩躁，或想讓生活狀態比較穩的人。
+            </p>
+            <ul>
+              <li>看家中容易累積壓力的位置</li>
+              <li>標出需要先整理或調整的區域</li>
+              <li>給出可做、可觀察的空間任務</li>
+            </ul>
+            <a href="#pricing" class="text-link">看居家方案怎麼選</a>
+          </article>
+
+          <article class="path-card business">
+            <div class="path-label">商業版</div>
+            <h3>店面・工作室空間檢測</h3>
+            <p>
+              適合店面、工作室、美容院、診所、展售空間，想看現場是否有讓客人很快離開、收款卡或團隊消耗的因素。
+            </p>
+            <ul>
+              <li>看入口、動線、收款與停留位置</li>
+              <li>整理現場讓人分心或卡住的因素</li>
+              <li>給出能配合營運觀察的調整方向</li>
+            </ul>
+            <a href="#pricing" class="text-link">看商業方案怎麼選</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section visual-band" id="faq">
+        <div class="section-heading">
+          <p class="eyebrow">購買前的疑慮</p>
+          <h2>真正會卡住成交的問題，先在這裡講清楚。</h2>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-item">
+            <h3>為什麼要先檢測，不直接買 3 個月？</h3>
+            <p>因為每個空間卡住的位置不同。先檢測，是為了避免你花錢買了支持，卻不知道真正要觀察哪裡。</p>
+          </article>
+          <article class="faq-item">
+            <h3>不用到現場，判斷會不會太粗？</h3>
+            <p>我們會根據照片、平面圖、你的描述與補充資料做判斷。若資料不足，會先請你補拍或補充，不會硬做結論。</p>
+          </article>
+          <article class="faq-item">
+            <h3>90 天到底買到什麼？</h3>
+            <p>你買到的是一段完整支持流程：D0 支持主題、D30 / D60 階段摘要、D90 結案對照。你會知道做了什麼、觀察到什麼、下一步要看哪裡。</p>
+          </article>
+          <article class="faq-item">
+            <h3>我需要做很多事或配合儀式嗎？</h3>
+            <p>不用。你需要做的是實體任務清單，多數是打掃、整理、移走、拍照回傳或做簡單觀察；不需要改變信仰，也不需要做儀式。</p>
+          </article>
+          <article class="faq-item">
+            <h3>為什麼商業空間比居家貴？</h3>
+            <p>居家主要看休息、收納與家人互動的區域；商業空間還要看入口、客人動線、停留與收款位置、員工工作區，而且判讀要對照你的營運狀況。看的範圍和來回溝通都比較多，所以價格不同。</p>
+          </article>
+          <article class="faq-item">
+            <h3>付款之後多久開始？</h3>
+            <p>付款完成後，我們會在 24 小時內確認你的照片與平面圖是否足夠；資料確認後 3 個工作天內，你就會收到初步診斷。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section honesty" id="limits">
+        <div class="split">
+          <div>
+            <p class="eyebrow">先講清楚</p>
+            <h2>這不是保證業績、睡眠或人生立刻變好。</h2>
+          </div>
+          <div class="copy-stack">
+            <p>
+              Space Reset 做的是協助你看見空間裡可能造成消耗、混亂或不順的因素，並提供調整方向與 90 天觀察紀錄。它不是醫療、心理治療、裝修設計，也不承諾單次調整就讓所有問題消失。
+            </p>
+            <p>
+              我們重視真實回饋：哪些建議有幫助、哪些地方需要補資料、哪些調整後有明顯差異。這些都會讓服務越做越清楚。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section pricing" id="pricing">
+        <div class="section-heading">
+          <p class="eyebrow">方案選擇</p>
+          <h2>看完問題、流程與交付內容，再來選適合的支持方式。</h2>
+          <p>第一步先做空間檢測。若你想看完整調整與前後對照，主推 3 個月支持期；單月只是比較基準，年約是後續維持選項。</p>
+        </div>
+
+        <div class="pricing-entry">
+          <div>
+            <span>第一步</span>
+            <h3>空間檢測</h3>
+            <p>先看空間卡在哪。之後進入任何正式支持方案，檢測費都能全額折抵。商業空間因為要多看入口、動線、收款與員工區，判讀範圍較大，價格較高。</p>
+          </div>
+          <div class="price-groups compact-groups">
+            <div>
+              <span>居家空間</span>
+              <strong>NT$2,500</strong>
+            </div>
+            <div>
+              <span>商業空間</span>
+              <strong>NT$3,500</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-ladder" aria-label="Space Reset 台灣方案選擇">
+          <article class="plan-card anchor-plan">
+            <span class="plan-kicker">比較基準</span>
+            <h3>單月觀察</h3>
+            <p>給想先感受支持節奏的人。單月價格也是比較基準，讓你一眼看出 3 個月支持期划算在哪裡。</p>
+            <div class="tier-groups compact-tier-groups">
+              <div class="tier-group">
+                <h4>居家空間</h4>
+                <div class="tier-list compact-tier-list">
+                  <div>
+                    <span>30 坪以下</span>
+                    <strong>NT$4,200/月</strong>
+                  </div>
+                  <div>
+                    <span>31-60 坪</span>
+                    <strong>NT$5,100/月</strong>
+                  </div>
+                  <div>
+                    <span>61-90 坪</span>
+                    <strong>NT$6,000/月</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="tier-group">
+                <h4>商業空間</h4>
+                <div class="tier-list compact-tier-list">
+                  <div>
+                    <span>30 坪以下</span>
+                    <strong>NT$5,900/月</strong>
+                  </div>
+                  <div>
+                    <span>31-60 坪</span>
+                    <strong>NT$7,200/月</strong>
+                  </div>
+                  <div>
+                    <span>61-90 坪</span>
+                    <strong>NT$8,500/月</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <small>想看完整調整與前後對照，直接選 3 個月支持期會更完整。</small>
+          </article>
+
+          <article class="plan-card recommended-plan">
+            <div class="plan-badge">建議選這個</div>
+            <span class="plan-kicker">主推方案</span>
+            <h3>3 個月支持期</h3>
+            <p>用 90 天完成調整、觀察與 D30 / D60 / D90 對照。比單月價累計 3 個月更划算，也更容易看見空間前後差異。</p>
+            <div class="tier-groups">
+              <div class="tier-group">
+                <h4>居家空間</h4>
+                <div class="tier-list anchored-tier-list">
+                  <div>
+                    <span>30 坪以下</span>
+                    <del>單月價累計 3 個月 NT$12,600</del>
+                    <strong>一次付三個月支持價 NT$9,900</strong>
+                    <em>現省 NT$2,700</em>
+                  </div>
+                  <div>
+                    <span>31-60 坪</span>
+                    <del>單月價累計 3 個月 NT$15,300</del>
+                    <strong>一次付三個月支持價 NT$11,900</strong>
+                    <em>現省 NT$3,400</em>
+                  </div>
+                  <div>
+                    <span>61-90 坪</span>
+                    <del>單月價累計 3 個月 NT$18,000</del>
+                    <strong>一次付三個月支持價 NT$14,000</strong>
+                    <em>現省 NT$4,000</em>
+                  </div>
+                </div>
+              </div>
+              <div class="tier-group">
+                <h4>商業空間</h4>
+                <div class="tier-list anchored-tier-list">
+                  <div>
+                    <span>30 坪以下</span>
+                    <del>單月價累計 3 個月 NT$17,700</del>
+                    <strong>一次付三個月支持價 NT$13,800</strong>
+                    <em>現省 NT$3,900</em>
+                  </div>
+                  <div>
+                    <span>31-60 坪</span>
+                    <del>單月價累計 3 個月 NT$21,600</del>
+                    <strong>一次付三個月支持價 NT$16,800</strong>
+                    <em>現省 NT$4,800</em>
+                  </div>
+                  <div>
+                    <span>61-90 坪</span>
+                    <del>單月價累計 3 個月 NT$25,500</del>
+                    <strong>一次付三個月支持價 NT$19,800</strong>
+                    <em>現省 NT$5,700</em>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <small>檢測費可全額折抵。這是 Space Reset 正式支持的主要入口。</small>
+          </article>
+
+          <article class="plan-card future-plan">
+            <span class="plan-kicker">長期維持</span>
+            <h3>年約維持</h3>
+            <p>適合已經感受到空間變輕，想把狀態穩定維持下來的人。3 個月後可直接銜接。</p>
+            <div class="price-groups">
+              <div>
+                <span>居家空間</span>
+                <strong>NT$33,000 起</strong>
+              </div>
+              <div>
+                <span>商業空間</span>
+                <strong>NT$46,000 起</strong>
+              </div>
+            </div>
+            <small>完成 3 個月支持後，可銜接為長期維持方案。</small>
+          </article>
+        </div>
+
+        <div class="pricing-cta">
+          <p>從檢測開始最穩：NT$2,500 起，之後進入任何正式方案全額折抵——等於先用小額把卡點看清楚，再決定要不要投入 90 天。</p>
+          <a class="button primary" href="#upload" data-upload-trigger>申請空間檢測</a>
+        </div>
+      </section>
+
+      <section class="section upload" id="upload">
+        <div class="upload-panel">
+          <p class="eyebrow">I8 初八信息顧問｜Space Reset 空間檢測</p>
+          <h2>想好要處理哪個空間了嗎？填完直接進付款，馬上排入檢測。</h2>
+          <p>
+            準備很簡單：手機拍的照片，加上平面圖或手繪圖就可以開始。每期檢測件數有限，額滿後依序排入下一梯。
+          </p>
+
+          <form class="lead-form" data-lead-form novalidate>
+            <div class="form-grid">
+              <label>
+                <span>姓名</span>
+                <input name="name" type="text" required autocomplete="name" placeholder="怎麼稱呼你" />
+              </label>
+              <label>
+                <span>Email</span>
+                <input name="email" type="email" required autocomplete="email" placeholder="付款備份與檢測回覆會寄到這裡" />
+              </label>
+              <label>
+                <span>LINE 或電話（選填）</span>
+                <input name="contact" type="text" placeholder="方便的話留一個" />
+              </label>
+              <label>
+                <span>空間類型</span>
+                <select name="type" data-space-type>
+                  <option value="居家空間" data-kind="home" selected>居家空間</option>
+                  <option value="店面" data-kind="business">店面</option>
+                  <option value="工作室" data-kind="business">工作室</option>
+                  <option value="辦公室" data-kind="business">辦公室</option>
+                  <option value="診所或美容院" data-kind="business">診所或美容院</option>
+                  <option value="其他商業空間" data-kind="business">其他商業空間</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              <span>目前狀況與最想處理的問題</span>
+              <textarea name="note" rows="3" required placeholder="可以直接貼上你的 60 秒自測結果，再補一兩句現況"></textarea>
+            </label>
+            <label>
+              <span>照片與平面圖雲端連結</span>
+              <textarea name="links" rows="2" required placeholder="Google Drive / Dropbox / iCloud 資料夾連結。照片請含入口、主要區域，和你最有感的位置"></textarea>
+            </label>
+            <label class="consent">
+              <input name="consent" type="checkbox" required />
+              <span>我確認已取得空間資料提供同意，並同意用於初步檢視</span>
+            </label>
+            <button type="submit" class="button primary" data-submit-btn>送出資料，前往付款 NT$2,500</button>
+            <p class="form-status" data-form-status>
+              送出後直接前往安全付款頁，同時會寄一封含付款連結的 Email 備份，晚點付也不會不見。付款完成、資料確認後 3 個工作天內回覆初步診斷；檢測費可全額折抵任何正式支持方案。
+            </p>
+            <a class="form-fallback" href="#" data-form-link>表單送不出去？改用 Google 表單填寫</a>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Space Reset</strong>
+        <span>居家・店面空間檢測</span>
+      </div>
+      <p>© Initial 8 CO. 版權所有。</p>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
