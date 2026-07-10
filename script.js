@@ -1,7 +1,7 @@
 const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeLqBfWor5-98l7i-RomNlkca9Cjdcd-OswEeHR9YlNlHiHUg/viewform?usp=publish-editor";
 
 // Apps Script 網頁應用程式網址（部署後貼上，見 Google表單欄位與文案.md）
-const WEB_APP_URL = "";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwBWfhDKSFlo8QFrLKUhlouuxfvHQTPrXFREBn8EzM-uolvqwBLvJ5NI7NWL-iN-jpC/exec";
 
 // 綠界／藍新固定金額付款連結
 const PAYMENT_LINKS = {
