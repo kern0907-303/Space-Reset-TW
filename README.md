@@ -1,6 +1,6 @@
 # Space Reset｜居家・店面空間檢測網站（台灣版）
 
-台灣版本地靜態網站。由原 Space Reset 網站架構完整複製而來，保留原版資料夾不覆蓋；本版改為台灣慣用語與 NT$ 定價。網站 CTA 已接上正式 Google 表單；填表通知採 Google Sheets Apps Script 直發 Telegram；第一版只收初步檢視資料，不直接收款、不承諾正式開案。
+台灣版本地靜態網站。由原 Space Reset 網站架構完整複製而來，保留原版資料夾不覆蓋；本版改為台灣慣用語與 NT$ 定價。網站 CTA 已接上正式 Google 表單與綠界固定金額付款連結；填表通知採 Google Sheets Apps Script 直發 Telegram；第一版收初步檢視資料與檢測費，不承諾正式開案。
 
 ## 檔案
 
@@ -30,18 +30,31 @@ https://docs.google.com/forms/d/1pb9C-DVgtuqICDtdhpiKgXLZcgfghr3fKztNTiV4jc4/edi
 
 若之後重建或發布新表單，只需要把這個常數換成新的「表單填寫網址」。
 
+## 付款連結
+
+目前台灣版空間檢測已接入綠界固定金額付款連結：
+
+```js
+const PAYMENT_LINKS = {
+  home: { url: "https://p.ecpay.com.tw/C640B3E", amount: "NT$2,500", label: "居家空間檢測" },
+  business: { url: "https://p.ecpay.com.tw/D25CF59", amount: "NT$3,500", label: "商業空間檢測" },
+};
+```
+
+站內表單會依「空間類型」判斷付款連結：居家空間走居家檢測付款；店面、工作室、辦公室、診所或美容院、其他商業空間走商業空間檢測付款。
+
 ## 購買後感謝頁配置
 
-`thanks.html` 是購買完成後的感謝頁，放在網站根目錄。GitHub Pages 啟用後，付款平台的成功導回網址設定為：
+`thanks.html` 是購買完成後的感謝頁，放在網站根目錄。Cloudflare Pages 啟用後，付款平台的成功導回網址設定為：
 
 ```text
-https://kern0907-303.github.io/Space-Reset-TW/thanks.html
+https://space-reset-tw.pages.dev/thanks.html
 ```
 
 付款取消或付款失敗的導回網址建議設定為：
 
 ```text
-https://kern0907-303.github.io/Space-Reset-TW/index.html#pricing
+https://space-reset-tw.pages.dev/#pricing
 ```
 
 這個頁面已設定 `noindex`，不需要放在主選單，也不建議當成廣告入口；它只負責承接付款完成後的下一步說明。
