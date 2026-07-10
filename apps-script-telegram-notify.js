@@ -114,7 +114,7 @@ function maybeSendPaymentEmail_(namedValues) {
         "",
         "檢測費可全額折抵任何正式支持方案。",
         "",
-        "Space Reset｜Initial 8 CO.",
+        "Space Reset｜艾伯林量子調頻",
       ].join("\n"),
     });
     return "已寄確認信（先不確定類型，待人工回覆付款方式）";
@@ -148,7 +148,7 @@ function maybeSendPaymentEmail_(namedValues) {
       "",
       "如果對金額或流程有任何疑問，直接回覆這封信就可以。",
       "",
-      "Space Reset｜Initial 8 CO.",
+      "Space Reset｜艾伯林量子調頻",
     ].join("\n"),
   });
 
