@@ -60,15 +60,9 @@ if (leadForm) {
     submitBtn.textContent = "送出中…";
 
     if (!WEB_APP_URL) {
-      // 尚未部署後端：保留 Google 表單收資料，同時依空間類型前往固定金額付款頁。
-      formStatus.textContent = plan.url
-        ? "已為你開啟資料上傳表單，接著前往付款頁。請在付款備註填上表單用的姓名與 Email，方便核對。"
-        : "目前先透過 Google 表單收資料，已為你開啟表單。";
-      window.open(FORM_URL, "_blank", "noopener");
-      if (plan.url) {
-        window.location.href = plan.url;
-        return;
-      }
+      // 後端尚未部署：不跳轉、不開分頁，避免客戶面對兩個頁面
+      formStatus.textContent =
+        "系統設定中，暫時無法直接送出。請點下方「改用 Google 表單填寫」，我們收到後會回覆付款方式。";
       submitBtn.disabled = false;
       updateButton();
       return;
@@ -92,13 +86,8 @@ if (leadForm) {
         updateButton();
       }
     } catch (error) {
-      if (plan.url) {
-        formStatus.textContent = "網站送出失敗，已改開資料上傳表單，接著前往付款頁。請在付款備註填上表單用的姓名與 Email，方便核對。";
-        window.open(FORM_URL, "_blank", "noopener");
-        window.location.href = plan.url;
-        return;
-      }
-      formStatus.textContent = "送出失敗，請改用下方的 Google 表單，或直接聯絡我們。";
+      formStatus.textContent =
+        "送出失敗，資料還沒有進來。請點下方「改用 Google 表單填寫」，或直接聯絡我們，先不要付款。";
       submitBtn.disabled = false;
       updateButton();
     }
