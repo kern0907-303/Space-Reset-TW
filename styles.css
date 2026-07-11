@@ -302,6 +302,7 @@ h3 {
 .path-grid,
 .process-grid,
 .flow-diagram,
+.trust-grid,
 .faq-grid {
   display: grid;
   max-width: 1120px;
@@ -338,6 +339,7 @@ h3 {
 .path-card,
 .process-step,
 .flow-step,
+.trust-card,
 .faq-item {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -352,6 +354,7 @@ h3 {
 .symptom-card span,
 .path-label,
 .value-list span,
+.trust-card span,
 .timeline-item span {
   display: inline-block;
   margin-bottom: 16px;
@@ -365,6 +368,7 @@ h3 {
 .path-card li,
 .process-step p,
 .flow-step p,
+.trust-card p,
 .copy-stack p,
 .value-list p,
 .timeline-item p,
@@ -377,6 +381,25 @@ h3 {
 .contrast,
 .visual-band {
   background: var(--soft);
+}
+
+.trust-section {
+  background: var(--paper);
+}
+
+.trust-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.trust-card {
+  display: grid;
+  min-height: 260px;
+  align-content: start;
+  padding: 26px;
+}
+
+.trust-card h3 {
+  margin-bottom: 12px;
 }
 
 .quiz-section {
@@ -1438,6 +1461,7 @@ h3 {
   .path-grid,
   .process-grid,
   .flow-diagram,
+  .trust-grid,
   .faq-grid,
   .quiz-intro-grid,
   .pricing-ladder,
@@ -1557,6 +1581,7 @@ h3 {
   .symptom-card,
   .path-card,
   .process-step,
+  .trust-card,
   .quiz-intro-grid article,
   .faq-item {
     padding: 24px;
