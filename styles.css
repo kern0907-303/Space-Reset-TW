@@ -392,6 +392,39 @@ h3 {
   color: #e8c1a6;
 }
 
+.quiz-intro-grid {
+  display: grid;
+  max-width: 920px;
+  margin: 0 auto 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.quiz-intro-grid article {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.quiz-intro-grid span {
+  display: block;
+  margin-bottom: 10px;
+  color: #e8c1a6;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.quiz-intro-grid h3 {
+  font-size: 1rem;
+}
+
+.quiz-intro-grid p {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.92rem;
+}
+
 .quiz-panel {
   max-width: 720px;
   margin: 0 auto;
@@ -549,6 +582,27 @@ h3 {
   margin-top: 20px;
   color: rgba(255, 255, 255, 0.55);
   font-size: 0.84rem;
+}
+
+.quiz-handoff {
+  display: flex;
+  max-width: 720px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 22px auto 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-top: 20px;
+}
+
+.quiz-handoff p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.light-link {
+  color: #e8c1a6;
+  white-space: nowrap;
 }
 
 .split {
@@ -1385,6 +1439,7 @@ h3 {
   .process-grid,
   .flow-diagram,
   .faq-grid,
+  .quiz-intro-grid,
   .pricing-ladder,
   .split,
   .value-layout,
@@ -1419,6 +1474,11 @@ h3 {
 
   .section-bridge {
     align-items: stretch;
+    flex-direction: column;
+  }
+
+  .quiz-handoff {
+    align-items: flex-start;
     flex-direction: column;
   }
 
@@ -1497,8 +1557,13 @@ h3 {
   .symptom-card,
   .path-card,
   .process-step,
+  .quiz-intro-grid article,
   .faq-item {
     padding: 24px;
+  }
+
+  .quiz-toggle {
+    flex-direction: column;
   }
 
   .pricing-entry,
