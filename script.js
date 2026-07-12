@@ -329,6 +329,18 @@ if (quiz) {
 
 if (formLink) {
   formLink.addEventListener("click", (event) => {
+    const areaText = String(document.querySelector('input[name="area"]')?.value || "");
+    const areaNumbers = areaText.match(/\d+(?:\.\d+)?/g) || [];
+    const isLargeFallback = areaText.includes("百") || areaNumbers.some((value) => Number(value) > 90);
+    if (isLargeFallback) {
+      event.preventDefault();
+      if (formStatus) {
+        formStatus.textContent =
+          "90 坪以上請先用上方站內表單送出資料，不要改走舊 Google 表單，避免收到固定付款連結。";
+      }
+      return;
+    }
+
     if (FORM_URL) {
       formLink.setAttribute("href", FORM_URL);
       formLink.setAttribute("target", "_blank");
