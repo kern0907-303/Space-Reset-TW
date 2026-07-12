@@ -118,7 +118,33 @@ if (leadForm) {
   });
 }
 
-// ---- 60 秒空間自查 ----
+// ---- 對號入座切換 ----
+const audienceTabs = document.querySelector("[data-audience-tabs]");
+
+if (audienceTabs) {
+  const tabButtons = audienceTabs.querySelectorAll("[data-audience-tab]");
+  const tabPanels = audienceTabs.querySelectorAll("[data-audience-panel]");
+
+  tabButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.audienceTab;
+
+      tabButtons.forEach((item) => {
+        const isActive = item === button;
+        item.classList.toggle("is-active", isActive);
+        item.setAttribute("aria-selected", String(isActive));
+      });
+
+      tabPanels.forEach((panel) => {
+        const isActive = panel.dataset.audiencePanel === target;
+        panel.classList.toggle("is-active", isActive);
+        panel.hidden = !isActive;
+      });
+    });
+  });
+}
+
+// ---- 60 秒空間自查（保留舊連結相容；首頁已不顯示）----
 const QUIZ_DATA = {
   home: {
     label: "居家",
@@ -268,7 +294,7 @@ if (quiz) {
       ? `建議優先觀察：${topDims.join("、")}`
       : "目前沒有特別突出的卡點面向。";
     resultCopy.textContent = tier.copy;
-    summaryText = `【Space Reset 60 秒自查】${label}｜總分 ${total}/16｜${tier.title}｜優先觀察：${topDims.join("、") || "無明顯卡點"}`;
+    summaryText = `【Space Reset 60 秒自查】${label}｜總分 ${total}/16｜${tier.title}｜優先觀察：${topDims.join("、") || "沒有突出卡點"}`;
   };
 
   const restart = () => {
