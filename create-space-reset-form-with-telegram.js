@@ -1,5 +1,5 @@
-const SPACE_RESET_FORM_TITLE = "Space Reset｜空間初步檢視資料上傳";
-const SPACE_RESET_SHEET_TITLE = "Space Reset｜空間初步檢視回覆";
+const SPACE_RESET_FORM_TITLE = "Space Reset｜空間檢測資料上傳";
+const SPACE_RESET_SHEET_TITLE = "Space Reset｜空間檢測回覆";
 const TELEGRAM_API_BASE = "https://api.telegram.org/bot";
 const SPACE_RESET_DRIVE_ROOT = "Space Reset｜資料庫與案件資料";
 
@@ -92,18 +92,20 @@ const DATABASE_SHEETS = [
 function setupSpaceResetForm() {
   const form = FormApp.create(SPACE_RESET_FORM_TITLE);
   form.setDescription([
-    "請上傳你想請我們初步檢視的空間資料。",
+    "請上傳你想請我們檢測的空間資料。",
     "",
-    "準備很簡單：手機拍的照片，加上平面圖或手繪圖就可以。我們收到後會先看資料是否足夠，再回覆下一步。",
+    "準備很簡單：手機拍的照片，加上平面圖或手繪圖，再寫下你最在意的實際狀況。我們會先確認資料是否足夠，再開始檢測。",
     "",
-    "這份表單不是醫療、心理治療、裝修設計或風水保證；它的目的，是協助我們先了解空間現況與你最想看的問題。",
+    "這份表單不是醫療、心理、裝修設計或其他專業服務；它的目的，是協助我們了解空間現況，找出最值得優先處理的位置。",
   ].join("\n"));
   form.setConfirmationMessage([
     "已收到你的 Space Reset 空間資料。",
     "",
-    "我們會先看資料是否足夠，再回覆下一步。如果照片、平面圖或描述不足，可能會請你補充資料。",
+    "付款連結已寄到你填寫的 Email。完成付款、資料確認後，3 個工作天內會收到一頁診斷摘要。",
     "",
-    "提醒：這是初步檢視資料上傳，並不代表已正式開案。",
+    "如果照片、平面圖或描述不足，我們會先請你補充，不會硬做結論。",
+    "",
+    "檢測費可全額折抵 3 個月支持期或年約維持；單月觀察不折抵。",
   ].join("\n"));
   form.setCollectEmail(false);
   form.setLimitOneResponsePerUser(false);
@@ -117,19 +119,18 @@ function setupSpaceResetForm() {
   addMultipleChoice_(form, "空間類型", ["居家空間", "店面", "辦公室・工作室", "診所或美容院", "展售空間", "其他商業空間", "先不確定"], true);
   addText_(form, "大約坪數", "例：28 坪、約 75 坪、兩層共 120 坪。90 坪以上、複合式或多樓層空間會先看資料後評估。", true);
   addText_(form, "空間名稱或所在區域", "例：台北工作室、新北住家、台中店面、台南辦公室。", true);
-  addCheckbox_(form, "你最想看的空間重點", [
-    "【居家】回到家之後反而更累、提不起勁",
-    "【居家】睡眠不穩，容易醒或睡不深",
-    "【居家】家人之間容易煩躁或起摩擦",
-    "【居家】物件、角落或收納總是亂回來、不想靠近",
-    "【店面】客人進店後停留時間短，很快離開",
-    "【店面】入口、動線、收款、成交或預約容易卡",
-    "【店面】員工或自己待在現場容易疲累消耗",
-    "【辦公室／工作室】一進空間就覺得悶，難進入工作狀態",
-    "【辦公室／工作室】會議、溝通或案子推進容易卡住",
-    "其他／說不上來，但覺得空間不太對",
-  ], "可複選。請依你的空間類型勾選最有感的項目；居家、店面、辦公室／工作室可分開看，不需要全部都選。", true);
-  addParagraph_(form, "請用幾句話描述目前狀況", "可以先貼上網站 60 秒自測的「複製自測結果」，再補幾句你最有感的狀況。例：哪個位置最悶、最亂、最卡，或什麼時候特別明顯。", true);
+  addCheckbox_(form, "你最想先處理的空間狀況", [
+    "【居家】回到家卻沒有真正放鬆",
+    "【居家】某些區域總讓人不想停留",
+    "【居家】整理後很快恢復原狀",
+    "【居家】家人容易疲累煩躁",
+    "【商業】客人進來不容易停留",
+    "【商業】入口、動線、收款區不順",
+    "【商業】員工容易疲累分心",
+    "【商業】調整過但現場狀況反覆發生",
+    "其他／說不上來，但覺得空間狀態不太對",
+  ], "可複選。請依你的空間類型勾選最有感的項目；不需要全部都選。", true);
+  addParagraph_(form, "請用幾句話描述目前狀況與最想先處理的位置", "請寫下反覆發生的狀況、最不想停留的位置，或現場最卡的地方。例：整理後很快又回到原狀、客人進來不容易停留，或某個區域一直讓人不想靠近。", true);
   addParagraph_(form, "平面圖或手繪圖連結", "請貼 Google Drive、Dropbox、iCloud 或其他雲端連結。PDF / JPG / PNG 都可以。", false);
   addParagraph_(form, "空間照片連結", [
     "請盡量包含：",
@@ -142,9 +143,9 @@ function setupSpaceResetForm() {
     "請貼 Google Drive、Dropbox、iCloud 或其他雲端資料夾連結。照片不用修圖，能看清楚現場即可。",
   ].join("\n"), true);
   addParagraph_(form, "影片或其他雲端連結", "如果有影片、走拍、YouTube 私人連結或其他補充雲端資料，請貼在這裡。", false);
-  addParagraph_(form, "補充資料連結", "可以貼 Google Drive、Dropbox、iCloud 或其他雲端資料連結。若你已完成網站上的 60 秒空間自測，也可以把「複製自測結果」貼在這裡，方便我們接著你的自測線索往下看。", false);
+  addParagraph_(form, "補充資料連結", "可以貼 Google Drive、Dropbox、iCloud 或其他雲端資料連結。例如走拍影片、現場動線影片或補充照片。", false);
   addCheckbox_(form, "資料提供同意", [
-    "我確認已取得空間資料提供同意，並同意我們使用這些資料做初步檢視",
+    "我確認已取得空間資料提供同意，並同意我們使用這些資料做 Space Reset 空間檢測",
   ], "", true);
   addParagraph_(form, "備註", "其他想補充的內容。", false);
 
@@ -362,7 +363,7 @@ function applyDataValidation_(spreadsheet) {
   setDropdown_(spreadsheet, "案件主表", "reply_preference", ["LINE", "Email", "由合作夥伴聯絡", "其他"]);
   setDropdown_(spreadsheet, "案件主表", "consent_case_use", ["同意", "不同意", "需確認"]);
   setDropdown_(spreadsheet, "案件主表", "payment_status", ["未付款", "已付款", "部分付款", "退款", "不適用"]);
-  setDropdown_(spreadsheet, "案件主表", "package_type", ["初步檢視", "簡版", "完整版", "30天支持", "其他"]);
+  setDropdown_(spreadsheet, "案件主表", "package_type", ["空間檢測", "簡版", "完整版", "30天支持", "其他"]);
   setDropdown_(spreadsheet, "TimeWaver報告", "report_type", ["簡版", "完整版"]);
   setDropdown_(spreadsheet, "TimeWaver報告", "approved_by_erick", ["TRUE", "FALSE", "需確認"]);
   setDropdown_(spreadsheet, "診斷問題點", "severity", ["高", "中", "低"]);
@@ -495,8 +496,8 @@ function buildSpaceResetMessage_(namedValues, spreadsheetUrl) {
     line("希望回覆方式", "希望怎麼回覆你"),
     line("空間類型", "空間類型"),
     line("空間名稱或所在區域", "空間名稱或所在區域"),
-    line("想看的重點", ["你最想看的空間重點", "你最想請我們看的重點", "你最想請 " + "E" + "rick" + " 看的重點"]),
-    line("目前狀況", "請用幾句話描述目前狀況"),
+    line("想先處理的狀況", ["你最想先處理的空間狀況", "你最想看的空間重點", "你最想請我們看的重點", "你最想請 " + "E" + "rick" + " 看的重點"]),
+    line("目前狀況與優先位置", ["請用幾句話描述目前狀況與最想先處理的位置", "請用幾句話描述目前狀況"]),
     line("平面圖或手繪圖連結", "平面圖或手繪圖連結"),
     line("空間照片連結", "空間照片連結"),
     line("影片或其他雲端連結", "影片或其他雲端連結"),

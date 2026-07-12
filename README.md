@@ -1,6 +1,6 @@
 # Space Reset｜居家・店面空間檢測網站（台灣版）
 
-台灣版本地靜態網站。由原 Space Reset 網站架構完整複製而來，保留原版資料夾不覆蓋；本版改為台灣慣用語與 NT$ 定價。網站 CTA 已接上正式 Google 表單與綠界固定金額付款連結；填表通知採 Google Sheets Apps Script 直發 Telegram；第一版收初步檢視資料與檢測費，不承諾正式開案。
+台灣版本地靜態網站。由原 Space Reset 網站架構完整複製而來，保留原版資料夾不覆蓋；本版改為台灣慣用語與 NT$ 定價。網站 CTA 已接上正式 Google 表單與綠界固定金額付款連結；填表通知採 Google Sheets Apps Script 直發 Telegram；第一版收空間檢測資料與檢測費，不承諾正式開案。
 
 ## 檔案
 
@@ -54,7 +54,7 @@ https://space-reset-tw.pages.dev/thanks.html
 付款取消或付款失敗的導回網址建議設定為：
 
 ```text
-https://space-reset-tw.pages.dev/#pricing
+https://space-reset-tw.pages.dev/#offer
 ```
 
 這個頁面已設定 `noindex`，不需要放在主選單，也不建議當成廣告入口；它只負責承接付款完成後的下一步說明。
@@ -66,11 +66,13 @@ https://space-reset-tw.pages.dev/#pricing
 - 首頁成交目標：只推空間檢測，不把 3 個月支持或年約做成獨立價格卡。
 - 首屏：直接說明問題、差異、檢測 CTA、降風險文字與檢測價格。價格依現有付款連結維持居家 NT$2,500、商業 NT$3,500。
 - 內容順序：首屏定位、居家/商業對號入座切換、三步檢測流程、與整理收納/室內設計/風水差異、檢測交付、檢測方案、FAQ、信任邊界、最後 CTA、資料上傳表單。
-- 折抵文案：首頁先使用「檢測費用可全額折抵後續支持方案」，正式折抵規則與適用範圍仍需人工確認後再補成完整法律/成交文字。
+- 檢測交付：付款且資料確認後，3 個工作天內交付一頁診斷摘要。
+- 折抵文案：檢測費可全額折抵 3 個月支持期或年約維持；單月觀察不折抵。
+- 法律與資料邊界：Space Reset 不取代醫療、心理、室內設計或其他專業，不承諾業績、睡眠或人生結果；未經同意，不公開照片、平面圖、對話或回饋內容。
 - 90 坪以上、複合式或多樓層空間：前台不直接列大型空間價格，送出資料後等候專案評估，不直接付款。
 
 ## 圖片來源
 
 - Hero photo: Lisa Anna on Unsplash
-- Google Form header: `assets/google-form-header.jpg`，由首頁首屏照片裁切成 1600 x 400，供「空間初步檢視資料上傳」表單辨識使用
+- Google Form header: `assets/google-form-header.jpg`，由首頁首屏照片裁切成 1600 x 400，供「空間檢測資料上傳」表單辨識使用
 - Diagnostic previews: Space Reset internal first-version templates
