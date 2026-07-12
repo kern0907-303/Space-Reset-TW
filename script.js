@@ -57,11 +57,14 @@ if (leadForm) {
 
     const kind = currentKind();
     const plan = PAYMENT_LINKS[kind];
+    const largeSpace = isLargeSpace();
     const payload = {
       name: leadForm.name.value.trim(),
       email: leadForm.email.value.trim(),
       contact: leadForm.contact.value.trim(),
-      type: typeSelect.value,
+      type: largeSpace
+        ? `先不確定｜${typeSelect.value}｜90坪以上大型空間`
+        : typeSelect.value,
       area: leadForm.area.value.trim(),
       note: leadForm.note.value.trim(),
       links: leadForm.links.value.trim(),
@@ -88,7 +91,7 @@ if (leadForm) {
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-      if (isLargeSpace()) {
+      if (largeSpace) {
         formStatus.textContent =
           "資料已送出。這是 90 坪以上或大型空間，我們會先看資料，再回覆檢測費與後續方案。";
         leadForm.reset();
