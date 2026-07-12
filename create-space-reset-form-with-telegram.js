@@ -115,6 +115,7 @@ function setupSpaceResetForm() {
   addText_(form, "聯絡方式", "LINE、Email、電話或其他可聯絡方式。", true);
   addMultipleChoice_(form, "希望怎麼回覆你", ["LINE", "Email", "由合作夥伴聯絡", "其他"], true);
   addMultipleChoice_(form, "空間類型", ["居家空間", "店面", "辦公室・工作室", "診所或美容院", "展售空間", "其他商業空間", "先不確定"], true);
+  addText_(form, "大約坪數", "例：28 坪、約 75 坪、兩層共 120 坪。90 坪以上、複合式或多樓層空間會先看資料後評估。", true);
   addText_(form, "空間名稱或所在區域", "例：台北工作室、新北住家、台中店面、台南辦公室。", true);
   addCheckbox_(form, "你最想看的空間重點", [
     "【居家】回到家之後反而更累、提不起勁",

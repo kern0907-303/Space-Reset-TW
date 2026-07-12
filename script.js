@@ -26,17 +26,28 @@ const leadForm = document.querySelector("[data-lead-form]");
 
 if (leadForm) {
   const typeSelect = leadForm.querySelector("[data-space-type]");
+  const areaInput = leadForm.elements.area;
   const submitBtn = leadForm.querySelector("[data-submit-btn]");
 
   const currentKind = () =>
     typeSelect.options[typeSelect.selectedIndex].dataset.kind || "home";
 
+  const isLargeSpace = () => {
+    const areaText = String(areaInput.value || "");
+    if (areaText.includes("百")) return true;
+    const numbers = areaText.match(/\d+(?:\.\d+)?/g) || [];
+    return numbers.some((value) => Number(value) > 90);
+  };
+
   const updateButton = () => {
     const plan = PAYMENT_LINKS[currentKind()];
-    submitBtn.textContent = `送出資料，前往付款 ${plan.amount}`;
+    submitBtn.textContent = isLargeSpace()
+      ? "送出資料，等候專案評估"
+      : `送出資料，前往付款 ${plan.amount}`;
   };
 
   typeSelect.addEventListener("change", updateButton);
+  areaInput.addEventListener("input", updateButton);
   updateButton();
 
   leadForm.addEventListener("submit", async (event) => {
@@ -51,6 +62,7 @@ if (leadForm) {
       email: leadForm.email.value.trim(),
       contact: leadForm.contact.value.trim(),
       type: typeSelect.value,
+      area: leadForm.area.value.trim(),
       note: leadForm.note.value.trim(),
       links: leadForm.links.value.trim(),
       source: "網站直送",
@@ -75,6 +87,15 @@ if (leadForm) {
         body: JSON.stringify(payload),
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      if (isLargeSpace()) {
+        formStatus.textContent =
+          "資料已送出。這是 90 坪以上或大型空間，我們會先看資料，再回覆檢測費與後續方案。";
+        leadForm.reset();
+        submitBtn.disabled = false;
+        updateButton();
+        return;
+      }
 
       if (plan.url) {
         formStatus.textContent = "資料已送出，正在帶你前往付款頁…";

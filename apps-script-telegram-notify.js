@@ -40,6 +40,7 @@ function doPost(e) {
     "Email（用來寄付款連結與檢測回覆）": [data.email || ""],
     "聯絡方式": [data.contact || ""],
     "空間類型": [data.type || ""],
+    "大約坪數": [data.area || ""],
     "請用幾句話描述目前狀況": [data.note || ""],
     "空間照片連結": [data.links || ""],
   };
@@ -48,15 +49,14 @@ function doPost(e) {
   const sheet =
     spreadsheet.getSheetByName("網站直送") ||
     spreadsheet.insertSheet("網站直送");
-  if (sheet.getLastRow() === 0) {
-    sheet.appendRow(["時間", "姓名", "Email", "聯絡方式", "空間類型", "目前狀況", "照片連結"]);
-  }
+  ensureWebsiteDirectHeader_(sheet);
   sheet.appendRow([
     new Date(),
     data.name || "",
     data.email || "",
     data.contact || "",
     data.type || "",
+    data.area || "",
     data.note || "",
     data.links || "",
   ]);
@@ -64,10 +64,13 @@ function doPost(e) {
   const paymentStatus = maybeSendPaymentEmail_(namedValues);
 
   if (token && chatId) {
+    const sourceStatus = isLargeSpace_(data.area)
+      ? "網站直送（大型空間待評估）"
+      : "網站直送（已跳轉付款頁）";
     const message = buildSpaceResetMessage_(
       namedValues,
       spreadsheet.getUrl(),
-      `網站直送（已跳轉付款頁）｜${paymentStatus}`
+      `${sourceStatus}｜${paymentStatus}`
     );
     sendTelegramMessage_(token, chatId, message);
   }
@@ -79,6 +82,20 @@ function jsonResponse_(payload) {
   return ContentService.createTextOutput(JSON.stringify(payload)).setMimeType(
     ContentService.MimeType.JSON
   );
+}
+
+function ensureWebsiteDirectHeader_(sheet) {
+  const headers = ["時間", "姓名", "Email", "聯絡方式", "空間類型", "大約坪數", "目前狀況", "照片連結"];
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(headers);
+    return;
+  }
+
+  const currentHeaders = sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), headers.length)).getValues()[0];
+  if (currentHeaders.indexOf("大約坪數") === -1) {
+    sheet.insertColumnAfter(5);
+    sheet.getRange(1, 6).setValue("大約坪數");
+  }
 }
 
 // ---- 自動付款信 ----
@@ -99,10 +116,12 @@ function maybeSendPaymentEmail_(namedValues) {
 
   const name = valueFromNamedValues_(namedValues, "姓名") || "你好";
   const type = valueFromNamedValues_(namedValues, "空間類型");
+  const area = valueFromNamedValues_(namedValues, ["大約坪數", "空間坪數", "空間面積"]);
   const isHome = type.indexOf("居家") !== -1;
   const isUnsure = !type || type.indexOf("先不確定") !== -1;
+  const isLarge = isLargeSpace_(area);
 
-  if (isUnsure) {
+  if (isUnsure || isLarge) {
     MailApp.sendEmail({
       to: email,
       subject: "已收到你的空間資料｜Space Reset",
@@ -110,14 +129,18 @@ function maybeSendPaymentEmail_(namedValues) {
       body: [
         `${name}，已收到你的空間資料。`,
         "",
-        "因為你選了「先不確定空間類型」，我們會先看過資料，1 個工作天內回覆你適合的檢測方案與付款方式。",
+        isLarge
+          ? "因為你的空間超過 90 坪，或屬於複合式／多樓層空間，我們會先看過資料，1 個工作天內回覆你適合的檢測費與後續方案。"
+          : "因為你選了「先不確定空間類型」，我們會先看過資料，1 個工作天內回覆你適合的檢測方案與付款方式。",
         "",
         "之後如果進入 3 個月支持期或年約維持，這次檢測費會從後續方案費用中全額扣掉。",
         "",
         "Space Reset｜艾伯林量子調頻",
       ].join("\n"),
     });
-    return "已寄確認信（先不確定類型，待人工回覆付款方式）";
+    return isLarge
+      ? "已寄確認信（90 坪以上／大型空間，待人工評估付款方式）"
+      : "已寄確認信（先不確定類型，待人工回覆付款方式）";
   }
 
   const link = isHome ? homeLink : businessLink;
@@ -159,6 +182,15 @@ function extractEmail_(value) {
   if (!value) return "";
   const match = String(value).match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/);
   return match ? match[0] : "";
+}
+
+function isLargeSpace_(value) {
+  const text = String(value || "");
+  if (text.indexOf("百") !== -1) return true;
+  const matches = text.match(/\d+(?:\.\d+)?/g) || [];
+  return matches.some(function (numberText) {
+    return Number(numberText) > 90;
+  });
 }
 
 function testTelegramNotification() {
@@ -210,6 +242,7 @@ function buildSpaceResetMessage_(namedValues, spreadsheetUrl, paymentStatus) {
     line("聯絡方式", "聯絡方式"),
     line("希望回覆方式", "希望怎麼回覆你"),
     line("空間類型", "空間類型"),
+    line("大約坪數", ["大約坪數", "空間坪數", "空間面積"]),
     line("空間名稱或所在區域", "空間名稱或所在區域"),
     line("想看的重點", ["你最想請我們看的重點", "你最想請 " + "E" + "rick" + " 看的重點"]),
     line("目前狀況", "請用幾句話描述目前狀況"),

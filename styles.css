@@ -1047,6 +1047,13 @@ h3 {
   background: var(--white);
 }
 
+.price-groups div.large-space-note,
+.tier-list div.large-space-note {
+  border-style: dashed;
+  border-color: rgba(30, 107, 85, 0.32);
+  background: #f7fbf8;
+}
+
 .price-groups span {
   display: block;
   margin-bottom: 4px;
@@ -1213,6 +1220,10 @@ h3 {
   font-size: 0.82rem;
   font-style: normal;
   font-weight: 900;
+}
+
+.large-space-note strong {
+  line-height: 1.35;
 }
 
 .pricing-table {
